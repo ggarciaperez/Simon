@@ -2,7 +2,12 @@
 A class Project based on Simon game
 ## Small description
 * 4 color buttons for the game
-* 2 buttons for funcionality
+* 3 buttons for funcionality
 * A debug/helper/info text pannel
 ## 
-Forced to upload unworking code, will update :)
+Knows Issues:
+* Game does not display system moves, only shows them as an array.
+* Game does not detect player fails on the fly.
+##
+Stuff to do:
+* Migrate to MVVC
