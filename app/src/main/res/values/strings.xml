@@ -7,6 +7,7 @@
     <string name="blueButton">Blue</string>
     <string name="yellowButton">Yellow</string>
     <string name="resetButton">Reset</string>
+    <string name="checkButton">Check Moves</string>
     <string name="infoText">Usefull information</string>
     <string name="toast">Hello Toast!</string>
 </resources>

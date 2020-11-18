@@ -12,39 +12,72 @@ class MainActivity : AppCompatActivity() {
 //    val text= "Hello Toast"
 //    val duration = Toast.LENGTH_SHORT
     private var game = mutableListOf<Int>()
-    private var player = mutableListOf<Int>()
+//    private var player = mutableListOf<Int>()
 
 
     @SuppressLint("WrongViewCast")
     override fun onCreate(savedInstanceState: Bundle?) {
+        var player = mutableListOf<Int>()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 //        val toast=Toast.makeText(applicationContext,text,duration)
 //        toast.show()
-        val startB: Button = findViewById(R.id.startButton)
-        val resetB: Button = findViewById(R.id.resetButton)
-        val combS: TextView = findViewById(R.id.infoText)
+        val startButton: Button = findViewById(R.id.startButton)
+        val resetButton: Button = findViewById(R.id.resetButton)
+        val checkButton: Button = findViewById(R.id.checkButton)
+        val outputText: TextView = findViewById(R.id.infoText)
 
-        startB.setOnClickListener {
-            movSis();
-            combS.text= game.toString()+"\n"
-            sysPlays()
-            pPlays()
+        val greenB:Button=findViewById(R.id.greenButton)
+        val redB:Button=findViewById(R.id.redButton)
+        val yellowB:Button=findViewById(R.id.yellowButton)
+        val blueB:Button=findViewById(R.id.blueButton)
+
+        greenB.setOnClickListener {
+            addPlayerMove(player,1) }
+        redB.setOnClickListener {
+            addPlayerMove(player,2) }
+        yellowB.setOnClickListener {
+            addPlayerMove(player,3) }
+        blueB.setOnClickListener {
+            addPlayerMove(player,4) }
+
+        startButton.setOnClickListener {
+            systemMoves();
+            outputText.text= game.toString()+"\n Do ur moves and press Check."
         }
-        resetB.setOnClickListener {
+        resetButton.setOnClickListener {
             game.clear()
-            combS.text="Reinicio"
+            player.clear()
+            outputText.text="Reinicio"
         }
+
+        checkButton.setOnClickListener {
+            checkMoves(player,game)
+            player.clear()
+        }
+
+
     }
 
-    private fun movSis(){
+    private fun systemMoves(){
         val pos : Int
         val randInt = Random.nextInt(4)+1
         pos=game.size
         game.add(pos,randInt)
     }
 
-    private fun sysPlays(){
+    private fun checkMoves(player: MutableList<Int>, game: MutableList<Int>){
+        val outputText: TextView = findViewById(R.id.infoText)
+        outputText.text="Checking player moves\n"
+        outputText.text=player.toString()+"\n"
+        if (game==player) {
+            outputText.text = outputText.text.toString() + "All good hit Start for a new round"
+        }else {
+            outputText.text= outputText.text.toString()+"You made a mistake, hit reset to start again."
+        }
+    }
+
+    /* NOT WORKING ATM private fun systemPlays(){
         val greenB:Button=findViewById(R.id.greenButton)
         val redB:Button=findViewById(R.id.redButton)
         val yellowB:Button=findViewById(R.id.yellowButton)
@@ -59,35 +92,17 @@ class MainActivity : AppCompatActivity() {
                 4 -> blueB.highlightColor
             }
         }
-    }
+    }*/
 
-    private fun pPlays(){
-        val greenB:Button=findViewById(R.id.greenButton)
-        val redB:Button=findViewById(R.id.redButton)
-        val yellowB:Button=findViewById(R.id.yellowButton)
-        val blueB:Button=findViewById(R.id.blueButton)
-        val combS: TextView = findViewById(R.id.infoText)
-        //combS.text=combS.text.toString()+game.lastIndex.toString()
-        var j = game.size
-        var pos : Int
-        var opcion =0
-        while (j!=0) {
-            for (p in game) {
-
-                greenB.setOnClickListener { opcion = 1 }
-                redB.setOnClickListener { opcion = 2 }
-                yellowB.setOnClickListener { opcion = 3 }
-                blueB.setOnClickListener { opcion = 4 }
-                if (p == opcion) {
-                    pos = player.size
-                    player.add(pos, opcion)
-                } //else {
-                  //  combS.text = "Fallaste"
-                  //  break
-                //}
-            }
-            j--
+    private fun addPlayerMove(player: MutableList<Int>, number: Int ){
+        when (number) {
+            1 -> player.add(1)
+            2 -> player.add(2)
+            3 -> player.add(3)
+            else -> player.add(4)
         }
+        val outputText: TextView = findViewById(R.id.infoText)
+        outputText.text=player.toString()
     }
 
 }

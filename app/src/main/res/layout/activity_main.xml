@@ -74,8 +74,7 @@
         android:text="@string/startButton"
         app:icon="@drawable/baseline_play_circle_outline_black_18dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/resetButton"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintRight_toLeftOf="@id/checkButton"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -83,13 +82,23 @@
         style="Widget.MaterialComponents.Button.TextButton.Icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="28dp"
         android:text="@string/resetButton"
         app:icon="@drawable/baseline_block_black_18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/startButton" />
+        app:layout_constraintLeft_toRightOf="@id/checkButton" />
+
+    <Button
+        android:id="@+id/checkButton"
+        style="Widget.MaterialComponents.Button.TextButton.Icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:text="@string/checkButton"
+        app:icon="@drawable/baseline_thumbs_up_down_black_18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/startButton"
+        tools:layout_constraintRight_toLeftOf="@id/resetButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
