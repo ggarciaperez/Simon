@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.activity.viewModels
+import androidx.lifecycle.Observer
 import kotlin.random.Random
 
 
@@ -20,6 +22,9 @@ class MainActivity : AppCompatActivity() {
         var player = mutableListOf<Int>()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // Adding viewmodel
+        val simonModel by viewModels<SimonViewModel>()
 //        val toast=Toast.makeText(applicationContext,text,duration)
 //        toast.show()
         val startButton: Button = findViewById(R.id.startButton)
@@ -32,6 +37,9 @@ class MainActivity : AppCompatActivity() {
         val yellowB:Button=findViewById(R.id.yellowButton)
         val blueB:Button=findViewById(R.id.blueButton)
 
+        simonModel.systemMoves.observe(this,
+            Observer{ newPlay -> outputText.text=systemMoves().toString()})
+
         greenB.setOnClickListener {
             addPlayerMove(player,1) }
         redB.setOnClickListener {
@@ -42,8 +50,9 @@ class MainActivity : AppCompatActivity() {
             addPlayerMove(player,4) }
 
         startButton.setOnClickListener {
-            systemMoves();
-            outputText.text= game.toString()+"\n Do ur moves and press Check."
+            simonModel.systemPlays()
+            //systemMoves();
+            //outputText.text= game.toString()+"\n Do ur moves and press Check."
         }
         resetButton.setOnClickListener {
             game.clear()
