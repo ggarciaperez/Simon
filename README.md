@@ -11,4 +11,4 @@ Knows Issues:
 ##
 Stuff to do:
 - [x] Migrate to MVVC
--[ ] Rethink how to show system plays visually
+- [ ] Rethink how to show system plays visually
