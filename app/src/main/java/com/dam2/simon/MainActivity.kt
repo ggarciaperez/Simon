@@ -12,7 +12,7 @@ import androidx.lifecycle.Observer
 
 class MainActivity : AppCompatActivity() {
 
-//Un used since change to viewModel
+//Unused since change to viewModel
 //    val text= "Hello Toast"
 //    val duration = Toast.LENGTH_SHORT
 //    private var game = mutableListOf<Int>()
@@ -21,14 +21,14 @@ class MainActivity : AppCompatActivity() {
 
     @SuppressLint("WrongViewCast")
     override fun onCreate(savedInstanceState: Bundle?) {
-//Un used since change to viewModel
+//Unused since change to viewModel
 //        var player = mutableListOf<Int>()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         // Adding viewmodel
         val simonModel by viewModels<SimonViewModel>()
-//Un used since change to viewModel
+//Unused since change to viewModel
 //        val toast=Toast.makeText(applicationContext,text,duration)
 //        toast.show()
 
@@ -53,6 +53,10 @@ class MainActivity : AppCompatActivity() {
                 newPlayerMove -> outputText.text=newPlayerMove.toString()
         })
 
+        simonModel.buttonStatus.observe(this, Observer {
+            status-> startButton.isEnabled=status
+        })
+
         //adjusted buttons to work with the viewModel variables.
         greenB.setOnClickListener {
             simonModel.addPlayerMove(simonModel.playerMoves,1) }
@@ -74,7 +78,7 @@ class MainActivity : AppCompatActivity() {
         //calls viewModel Method to reset the game variables
         resetButton.setOnClickListener {
             simonModel.fullReset()
-            outputText.text="Reinicio"
+            outputText.text="Restarted"
             //Un used since change to viewModel
             //game.clear()
             //player.clear()
@@ -83,7 +87,8 @@ class MainActivity : AppCompatActivity() {
         // calls viewModel Method to check if the play is correct
         checkButton.setOnClickListener {
             outputText.text="Checking player moves\n"
-            simonModel.checkMoves(simonModel.systemMoves,simonModel.playerMoves)
+            outputText.text=(simonModel.play(simonModel.checkMoves()))
+            simonModel.playerReset()
             //Un used since change to viewModel
             //checkMoves(player,game)
             //player.clear()
