@@ -12,23 +12,19 @@ import androidx.lifecycle.Observer
 
 class MainActivity : AppCompatActivity() {
 
-//Unused since change to viewModel
+//not using toast atm
 //    val text= "Hello Toast"
 //    val duration = Toast.LENGTH_SHORT
-//    private var game = mutableListOf<Int>()
-//    private var player = mutableListOf<Int>()
 
 
     @SuppressLint("WrongViewCast")
     override fun onCreate(savedInstanceState: Bundle?) {
-//Unused since change to viewModel
-//        var player = mutableListOf<Int>()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         // Adding viewmodel
         val simonModel by viewModels<SimonViewModel>()
-//Unused since change to viewModel
+//not using toast atm
 //        val toast=Toast.makeText(applicationContext,text,duration)
 //        toast.show()
 
@@ -70,18 +66,12 @@ class MainActivity : AppCompatActivity() {
         //calls viewModel Method to generate the system moves
         startButton.setOnClickListener {
             simonModel.systemPlays()
-            //Un used since change to viewModel
-            //systemMoves();
-            //outputText.text= game.toString()+"\n Do ur moves and press Check."
         }
 
         //calls viewModel Method to reset the game variables
         resetButton.setOnClickListener {
             simonModel.fullReset()
             outputText.text="Restarted"
-            //Un used since change to viewModel
-            //game.clear()
-            //player.clear()
         }
 
         // calls viewModel Method to check if the play is correct
@@ -89,45 +79,7 @@ class MainActivity : AppCompatActivity() {
             outputText.text="Checking player moves\n"
             outputText.text=(simonModel.play(simonModel.checkMoves()))
             simonModel.playerReset()
-            //Un used since change to viewModel
-            //checkMoves(player,game)
-            //player.clear()
         }
 
-
     }
-
-    /* Obsolete methods since moved to viewModel
-
-    private fun systemMoves(){
-        val pos : Int
-        val randInt = Random.nextInt(4)+1
-        pos=game.size
-        game.add(pos,randInt)
-    }
-
-    private fun addPlayerMove(player: MutableList<Int>, number: Int ){
-    when (number) {
-    1 -> player.add(1)
-    2 -> player.add(2)
-    3 -> player.add(3)
-    else -> player.add(4)
-    }
-    val outputText: TextView = findViewById(R.id.infoText)
-    outputText.text=player.toString()
-    }
-
-    private fun checkMoves(player: MutableList<Int>, game: MutableList<Int>){
-        val outputText: TextView = findViewById(R.id.infoText)
-        outputText.text="Checking player moves\n"
-        outputText.text=player.toString()+"\n"
-        if (game==player) {
-            outputText.text = outputText.text.toString() + "All good hit Start for a new round"
-        }else {
-            outputText.text= outputText.text.toString()+"You made a mistake, hit reset to start again."
-        }
-    }
-    */
-
-
 }

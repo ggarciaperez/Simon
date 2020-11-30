@@ -15,6 +15,7 @@ class SimonViewModel: ViewModel() {
     //We add the two game variables
     val systemMoves = MutableLiveData<MutableList<Int>>()
     val playerMoves = MutableLiveData<MutableList<Int>>()
+    //A variable to deactivate a button
     val buttonStatus = MutableLiveData<Boolean>()
 
     //Initialice both variables
@@ -41,7 +42,7 @@ class SimonViewModel: ViewModel() {
             delay(1000)
             systemMoves.notifiObserver()
             buttonStatus.value = false
-            Log.d("FuncionSystem", systemMoves.value.toString())
+            //Log.d("FuncionSystem", systemMoves.value.toString())
         }
     }
 
@@ -67,7 +68,7 @@ class SimonViewModel: ViewModel() {
         }
         //forces the variable update calling observer
         playerMoves.notifiObserver()
-        Log.d("FuncionSystem",playerMoves.value.toString())
+        //Log.d("FuncionSystem",playerMoves.value.toString())
     }
 
     //Method to check if both variables are the same
@@ -75,6 +76,7 @@ class SimonViewModel: ViewModel() {
         return systemMoves.value==playerMoves.value
     }
 
+    //Uses method checkMoves to interact with user
     fun play(check: Boolean):String{
         if (check==true){
             buttonStatus.value=true
