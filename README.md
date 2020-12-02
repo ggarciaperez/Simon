@@ -1,5 +1,5 @@
 # Simon
-A class Project based inspired on Simon game
+A class Project inspired on Simon game
 ## Small description
 * 4 color buttons for the game
 * 3 buttons for functionality
