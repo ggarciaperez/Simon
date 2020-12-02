@@ -79,8 +79,9 @@ class SimonViewModel: ViewModel() {
     //Uses method checkMoves to interact with user
     fun play(check: Boolean):String{
         if (check==true){
-            buttonStatus.value=true
-            return "All Good press Start to keep going."
+            systemPlays()
+            //buttonStatus.value=true
+            return "All Good wait a second for new iteraction."
         } else {
             buttonStatus.value=true
             return "You Failed. Never come back!"

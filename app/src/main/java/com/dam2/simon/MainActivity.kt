@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
         //calls viewModel Method to reset the game variables
         resetButton.setOnClickListener {
             simonModel.fullReset()
-            outputText.text="Restarted"
+            outputText.text="Restarted\n Press start to go again"
         }
 
         // calls viewModel Method to check if the play is correct

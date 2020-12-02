@@ -11,4 +11,5 @@ Knows Issues:
 ##
 Stuff to do:
 - [x] Migrate to MVVC
+- [x] "Autoplay working"
 - [ ] Rethink how to show system plays visually
